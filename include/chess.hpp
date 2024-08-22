@@ -1742,6 +1742,7 @@ class Board {
         prev_states_.reserve(256);
         setFenInternal(fen);
     }
+    virtual ~Board() = default;
     virtual void setFen(std::string_view fen) { setFenInternal(fen); }
 
     static Board fromFen(std::string_view fen) { return Board(fen); }
@@ -2675,6 +2676,8 @@ template <Direction direction>
         case Direction::SOUTH_EAST:
             return (b & ~MASK_FILE[7]) >> 7;
     }
+
+    return b;
 }
 
 /// @brief [Internal Usage] Generate the left side pawn attacks.
